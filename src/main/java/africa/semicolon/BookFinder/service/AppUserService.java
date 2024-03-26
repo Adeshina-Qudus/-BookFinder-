@@ -1,6 +1,9 @@
 package africa.semicolon.BookFinder.service;
 
 import africa.semicolon.BookFinder.dtos.request.BookFinderRequest;
+import africa.semicolon.BookFinder.dtos.request.SignUpRequest;
+import africa.semicolon.BookFinder.dtos.response.SignUpResponse;
+import africa.semicolon.BookFinder.exception.UserAlreadyExistException;
 import africa.semicolon.BookFinder.exception.UserDoesNotExistException;
 import africa.semicolon.BookFinder.model.Book;
 import africa.semicolon.BookFinder.model.User;
@@ -21,5 +24,15 @@ public class AppUserService implements UserService{
         }
         user.getReadingList().add(book);
         userRepository.save(user);
+    }
+
+    @Override
+    public SignUpResponse signUp(SignUpRequest signUpRequest) {
+        User user = userRepository.findByMail(signUpRequest.getMail());
+        if (user != null){
+            throw new UserAlreadyExistException("A user with this mail {"
+                    +signUpRequest.getMail()+"} is available");
+        }
+        return null;
     }
 }
