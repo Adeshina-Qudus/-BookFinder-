@@ -28,8 +28,7 @@ public class UserServiceTest {
     private UserService userService;
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private BookFinderService bookFinderService;
+
 
     @BeforeEach
     public void deleteAll(){
@@ -123,7 +122,7 @@ public class UserServiceTest {
         BookFinderRequest request = new BookFinderRequest();
         request.setMail("qudusa55@gmail.com");
         request.setTitle("romeo and juliet");
-        bookFinderService.searchBook(request);
+        userService.searchBook(request);
 
         User user = userRepository.findByMail("qudusa55@gmail.com");
         List<Book> books = user.getReadingList();
