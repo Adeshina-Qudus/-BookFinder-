@@ -1,6 +1,8 @@
 package africa.semicolon.BookFinder.utils;
 
 import africa.semicolon.BookFinder.dtos.request.SignUpRequest;
+import africa.semicolon.BookFinder.model.Book;
+import africa.semicolon.BookFinder.model.BookTemp;
 import africa.semicolon.BookFinder.model.User;
 
 public class Mapper {
@@ -11,5 +13,15 @@ public class Mapper {
         user.setMail(signUpRequest.getMail());
         user.setPassword(signUpRequest.getPassword());
         return user;
+    }
+
+    public static Book mapBook(BookTemp bookTemp) {
+        Book  book = new Book();
+        book.setTitle(bookTemp.getTitle());
+        book.setAuthors(bookTemp.getAuthors());
+        book.setCopyright(bookTemp.isCopyright());
+        book.setSubjects(bookTemp.getSubjects());
+        book.setMedia_type(bookTemp.getMedia_type());
+        return book;
     }
 }

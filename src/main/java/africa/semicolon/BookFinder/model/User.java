@@ -23,7 +23,7 @@ public class User {
     private Long id;
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    @Cascade({CascadeType.MERGE})
+    @Cascade({CascadeType.PERSIST,CascadeType.MERGE})
     private List<Book> readingList;
     private String mail;
     private String name;

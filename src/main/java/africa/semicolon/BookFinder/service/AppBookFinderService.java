@@ -6,6 +6,7 @@ import africa.semicolon.BookFinder.model.BookTemp;
 import africa.semicolon.BookFinder.model.Person;
 import africa.semicolon.BookFinder.dtos.request.BookFinderRequest;
 import africa.semicolon.BookFinder.dtos.response.BookFinderResponse;
+import africa.semicolon.BookFinder.utils.Mapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,12 +34,16 @@ public class AppBookFinderService implements BookFinderService{
         if (response == null){
             throw new BooKNotFoundException(request.getTitle()+" Not Found");
         }
-        BookTemp book = response.getResults().get(0);
-        authors(book.getAuthors());
-        Book book1 = new Book();
-        modelMapper.map(book1,BookTemp.class);
-        saveBook(book1);
-        addToReadingList(book1,request);
+        BookTemp bookTemp = response.getResults().get(0);
+        authors(bookTemp.getAuthors());
+        System.out.println(bookTemp);
+//        Book book = new Book();
+//        modelMapper.map(book,BookTemp.class);
+//        saveBook(book);
+        Book book = Mapper.mapBook(bookTemp);
+        saveBook(book);
+        System.out.println(book);
+        addToReadingList(book,request);
         return response;
     }
     private void authors(List<Person> person) {

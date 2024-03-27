@@ -6,6 +6,7 @@ import africa.semicolon.BookFinder.dtos.request.SignUpRequest;
 import africa.semicolon.BookFinder.dtos.response.SignInResponse;
 import africa.semicolon.BookFinder.dtos.response.SignUpResponse;
 import africa.semicolon.BookFinder.exception.InvalidDetailsException;
+import africa.semicolon.BookFinder.exception.PasswordDoesNotMatch;
 import africa.semicolon.BookFinder.exception.UserAlreadyExistException;
 import africa.semicolon.BookFinder.exception.UserDoesNotExistException;
 import africa.semicolon.BookFinder.model.Book;
@@ -15,6 +16,8 @@ import africa.semicolon.BookFinder.utils.Mapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.net.PasswordAuthentication;
 
 @Service
 public class AppUserService implements UserService{
@@ -40,6 +43,9 @@ public class AppUserService implements UserService{
         );
 //        User user = new User();
 //        modelMapper.map(user,SignUpRequest.class);
+        if (!signUpRequest.getPassword().equals(signUpRequest.getConfirmPassword())) throw new PasswordDoesNotMatch(
+                "Password Doesn't Match"
+        );
         User user = Mapper.map(signUpRequest);
         userRepository.save(user);
         response.setMessage(user.getName()+"Account Created");

@@ -4,11 +4,13 @@ import jakarta.persistence.ElementCollection;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.List;
 
 @Setter
 @Getter
+@ToString
 public class BookTemp {
     private Long id;
     private String title;
