@@ -1,7 +1,8 @@
 package africa.semicolon.BookFinder.service;
 
 import africa.semicolon.BookFinder.data.model.Book;
-import africa.semicolon.BookFinder.data.model.repository.BookRepository;
+
+import africa.semicolon.BookFinder.data.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

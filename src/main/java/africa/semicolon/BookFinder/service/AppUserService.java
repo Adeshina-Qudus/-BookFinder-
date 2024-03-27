@@ -46,7 +46,7 @@ public class AppUserService implements UserService{
         );
         User user = Mapper.map(signUpRequest);
         userRepository.save(user);
-        response.setMessage(user.getName()+"Account Created");
+        response.setMessage("Account for {"+user.getMail()+"} created");
         return response;
     }
     @Override

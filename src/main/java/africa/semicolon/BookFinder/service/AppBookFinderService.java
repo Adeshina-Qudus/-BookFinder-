@@ -35,7 +35,6 @@ public class AppBookFinderService implements BookFinderService{
         }
         BookTemp bookTemp = response.getResults().get(0);
         authors(bookTemp.getAuthors());
-        System.out.println(bookTemp);
 //        Book book = new Book();
 //        modelMapper.map(book,BookTemp.class);
 //        saveBook(book);

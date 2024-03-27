@@ -19,11 +19,12 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-    @PostMapping("signUp")
+
+    @PostMapping("/signUp")
     public ResponseEntity<?> signUp(@RequestBody SignUpRequest signUpRequest){
         SignUpResponse response = new SignUpResponse();
         try {
-            userService.signUp(signUpRequest);
+            response.setMessage(userService.signUp(signUpRequest).getMessage());
             return new ResponseEntity<>(new ApiResponse(true,response),
                     HttpStatus.CREATED);
         }catch (BookFinderException exception){
@@ -32,11 +33,11 @@ public class UserController {
                     HttpStatus.NOT_IMPLEMENTED);
         }
     }
-    @PostMapping("signIn")
+    @PostMapping("/signIn")
     public ResponseEntity<?> signIn(@RequestBody SignInRequest signInRequest){
         SignInResponse response = new SignInResponse();
         try {
-            userService.signIn(signInRequest);
+            response.setMessage(userService.signIn(signInRequest).getMessage());
             return new ResponseEntity<>(new ApiResponse(true,response),
                     HttpStatus.ACCEPTED);
         }catch (BookFinderException exception){
@@ -45,4 +46,15 @@ public class UserController {
                     HttpStatus.NOT_ACCEPTABLE);
         }
     }
+//    @GetMapping("/searchBook")
+//    public ResponseEntity<?> searchBook(@RequestBody BookFinderRequest bookFinderRequest){
+//        BookFinderResponse response = new BookFinderResponse();
+//        try {
+//            bookFinderService.searchBook(bookFinderRequest);
+//            return new ResponseEntity<>(new ApiResponse(true,response),
+//                    HttpStatus.FOUND);
+//        }catch (BookFinderException exception){
+//
+//        }
+//    }
 }
