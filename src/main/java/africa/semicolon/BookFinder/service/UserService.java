@@ -5,7 +5,7 @@ import africa.semicolon.BookFinder.dtos.request.SignInRequest;
 import africa.semicolon.BookFinder.dtos.request.SignUpRequest;
 import africa.semicolon.BookFinder.dtos.response.SignInResponse;
 import africa.semicolon.BookFinder.dtos.response.SignUpResponse;
-import africa.semicolon.BookFinder.model.Book;
+import africa.semicolon.BookFinder.data.model.Book;
 
 public interface UserService {
 

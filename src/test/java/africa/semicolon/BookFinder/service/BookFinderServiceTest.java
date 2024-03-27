@@ -4,7 +4,7 @@ import africa.semicolon.BookFinder.dtos.request.BookFinderRequest;
 import africa.semicolon.BookFinder.dtos.request.SignInRequest;
 import africa.semicolon.BookFinder.dtos.request.SignUpRequest;
 import africa.semicolon.BookFinder.dtos.response.BookFinderResponse;
-import africa.semicolon.BookFinder.repository.UserRepository;
+import africa.semicolon.BookFinder.data.repositories.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
-package africa.semicolon.BookFinder.repository;
+package africa.semicolon.BookFinder.data.repositories;
 
-import africa.semicolon.BookFinder.model.Person;
+import africa.semicolon.BookFinder.data.model.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PersonRepository  extends JpaRepository<Person,Long> {

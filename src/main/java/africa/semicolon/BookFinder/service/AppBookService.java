@@ -1,11 +1,9 @@
 package africa.semicolon.BookFinder.service;
 
-import africa.semicolon.BookFinder.model.Book;
-import africa.semicolon.BookFinder.repository.BookRepository;
+import africa.semicolon.BookFinder.data.model.Book;
+import africa.semicolon.BookFinder.data.model.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class AppBookService implements BookService{

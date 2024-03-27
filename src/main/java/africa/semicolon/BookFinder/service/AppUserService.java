@@ -9,15 +9,13 @@ import africa.semicolon.BookFinder.exception.InvalidDetailsException;
 import africa.semicolon.BookFinder.exception.PasswordDoesNotMatch;
 import africa.semicolon.BookFinder.exception.UserAlreadyExistException;
 import africa.semicolon.BookFinder.exception.UserDoesNotExistException;
-import africa.semicolon.BookFinder.model.Book;
-import africa.semicolon.BookFinder.model.User;
-import africa.semicolon.BookFinder.repository.UserRepository;
+import africa.semicolon.BookFinder.data.model.Book;
+import africa.semicolon.BookFinder.data.model.User;
+import africa.semicolon.BookFinder.data.repositories.UserRepository;
 import africa.semicolon.BookFinder.utils.Mapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.net.PasswordAuthentication;
 
 @Service
 public class AppUserService implements UserService{

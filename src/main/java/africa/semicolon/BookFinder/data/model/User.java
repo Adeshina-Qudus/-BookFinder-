@@ -1,4 +1,4 @@
-package africa.semicolon.BookFinder.model;
+package africa.semicolon.BookFinder.data.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -6,10 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
-import java.io.FileWriter;
 import java.util.List;
 import static jakarta.persistence.GenerationType.IDENTITY;
 

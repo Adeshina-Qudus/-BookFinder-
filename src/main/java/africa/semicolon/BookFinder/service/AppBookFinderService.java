@@ -1,9 +1,9 @@
 package africa.semicolon.BookFinder.service;
 
 import africa.semicolon.BookFinder.exception.BooKNotFoundException;
-import africa.semicolon.BookFinder.model.Book;
-import africa.semicolon.BookFinder.model.BookTemp;
-import africa.semicolon.BookFinder.model.Person;
+import africa.semicolon.BookFinder.data.model.Book;
+import africa.semicolon.BookFinder.data.model.BookTemp;
+import africa.semicolon.BookFinder.data.model.Person;
 import africa.semicolon.BookFinder.dtos.request.BookFinderRequest;
 import africa.semicolon.BookFinder.dtos.response.BookFinderResponse;
 import africa.semicolon.BookFinder.utils.Mapper;
@@ -11,7 +11,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import africa.semicolon.BookFinder.config.ModelMapperConfig.*;
 
 import java.util.List;
 

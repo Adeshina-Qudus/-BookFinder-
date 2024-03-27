@@ -1,7 +1,6 @@
 package africa.semicolon.BookFinder.dtos.response;
 
-import africa.semicolon.BookFinder.model.Book;
-import africa.semicolon.BookFinder.model.BookTemp;
+import africa.semicolon.BookFinder.data.model.BookTemp;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

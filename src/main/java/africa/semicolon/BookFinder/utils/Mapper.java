@@ -1,9 +1,9 @@
 package africa.semicolon.BookFinder.utils;
 
 import africa.semicolon.BookFinder.dtos.request.SignUpRequest;
-import africa.semicolon.BookFinder.model.Book;
-import africa.semicolon.BookFinder.model.BookTemp;
-import africa.semicolon.BookFinder.model.User;
+import africa.semicolon.BookFinder.data.model.Book;
+import africa.semicolon.BookFinder.data.model.BookTemp;
+import africa.semicolon.BookFinder.data.model.User;
 
 public class Mapper {
 

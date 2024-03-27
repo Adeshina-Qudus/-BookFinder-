@@ -1,4 +1,4 @@
-package africa.semicolon.BookFinder.model;
+package africa.semicolon.BookFinder.data.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;

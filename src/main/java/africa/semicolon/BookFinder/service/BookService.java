@@ -1,8 +1,6 @@
 package africa.semicolon.BookFinder.service;
 
-import africa.semicolon.BookFinder.model.Book;
-
-import java.util.List;
+import africa.semicolon.BookFinder.data.model.Book;
 
 public interface BookService {
     void save(Book book);

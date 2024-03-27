@@ -1,7 +1,5 @@
-package africa.semicolon.BookFinder.model;
+package africa.semicolon.BookFinder.data.model;
 
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
