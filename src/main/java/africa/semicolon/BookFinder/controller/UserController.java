@@ -1,8 +1,10 @@
 package africa.semicolon.BookFinder.controller;
 
+import africa.semicolon.BookFinder.dtos.request.BookFinderRequest;
 import africa.semicolon.BookFinder.dtos.request.SignInRequest;
 import africa.semicolon.BookFinder.dtos.request.SignUpRequest;
 import africa.semicolon.BookFinder.dtos.response.ApiResponse;
+import africa.semicolon.BookFinder.dtos.response.BookFinderResponse;
 import africa.semicolon.BookFinder.dtos.response.SignInResponse;
 import africa.semicolon.BookFinder.dtos.response.SignUpResponse;
 import africa.semicolon.BookFinder.exception.BookFinderException;
@@ -10,10 +12,7 @@ import africa.semicolon.BookFinder.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/user")
@@ -48,15 +47,16 @@ public class UserController {
                     HttpStatus.NOT_ACCEPTABLE);
         }
     }
-//    @GetMapping("/searchBook")
-//    public ResponseEntity<?> searchBook(@RequestBody BookFinderRequest bookFinderRequest){
-//        BookFinderResponse response = new BookFinderResponse();
-//        try {
-//            bookFinderService.searchBook(bookFinderRequest);
-//            return new ResponseEntity<>(new ApiResponse(true,response),
-//                    HttpStatus.FOUND);
-//        }catch (BookFinderException exception){
-//
-//        }
-//    }
+    @GetMapping("/searchBook")
+    public ResponseEntity<?> searchBook(@RequestBody BookFinderRequest bookFinderRequest){
+        BookFinderResponse response = new BookFinderResponse();
+        try {
+            return new ResponseEntity<>(new ApiResponse(true,
+                    userService.searchBook(bookFinderRequest)),
+                    HttpStatus.FOUND);
+        }catch (BookFinderException exception){
+            return new ResponseEntity<>(new ApiResponse(false,response),
+                    HttpStatus.NOT_FOUND);
+        }
+    }
 }
