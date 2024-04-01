@@ -80,6 +80,16 @@ public class AppUserService implements UserService{
         addToBookToReadingList(book,request);
         return response;
     }
+
+    @Override
+    public List<Book> viewReadingList(String mail) {
+        if (!userExist(mail)) throw new UserDoesNotExistException(
+                "Account with this {"+mail+"} Does not exist"
+        );
+        User user = userRepository.findByMail(mail);
+        return user.getReadingList();
+    }
+
     private void addToBookToReadingList(Book book, BookFinderRequest bookFinderRequest) {
         if (!userExist(bookFinderRequest.getMail())) throw new UserDoesNotExistException(
                 bookFinderRequest.getMail()+" doesn't exist");

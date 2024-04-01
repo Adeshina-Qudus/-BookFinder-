@@ -8,10 +8,13 @@ import africa.semicolon.BookFinder.dtos.response.SignInResponse;
 import africa.semicolon.BookFinder.dtos.response.SignUpResponse;
 import africa.semicolon.BookFinder.data.model.Book;
 
+import java.util.List;
+
 public interface UserService {
 
     SignUpResponse signUp(SignUpRequest signUpRequest);
 
     SignInResponse signIn(SignInRequest signInRequest);
     BookFinderResponse searchBook(BookFinderRequest request);
+    List<Book> viewReadingList(String mail);
 }
