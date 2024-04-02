@@ -35,7 +35,7 @@ public class AppUserService implements UserService{
     public SignUpResponse signUp(SignUpRequest signUpRequest) {
         SignUpResponse response = new SignUpResponse();
         if (userExist(signUpRequest.getMail())) throw new UserAlreadyExistException(
-                "Account with {"+signUpRequest.getMail()+"} already exist"
+                "Account with " + signUpRequest.getMail()+  " already exist"
         );
 //        User user = new User();
 //        modelMapper.map(user,SignUpRequest.class);
@@ -44,14 +44,14 @@ public class AppUserService implements UserService{
         );
         User user = Mapper.map(signUpRequest);
         userRepository.save(user);
-        response.setMessage("Account for {"+user.getMail()+"} created");
+        response.setMessage("Account for " + user.getMail() + " created");
         return response;
     }
     @Override
     public SignInResponse signIn(SignInRequest signInRequest){
         SignInResponse signInResponse = new SignInResponse();
         if (!userExist(signInRequest.getMail())) throw new UserDoesNotExistException(
-                "Account with this {"+signInRequest.getMail()+"} Does not exist"
+                "Account with this " + signInRequest.getMail() + " Does not exist"
         );
         User user = userRepository.findByMail(signInRequest.getMail());
         if (!user.getPassword().equals(signInRequest.getPassword())){

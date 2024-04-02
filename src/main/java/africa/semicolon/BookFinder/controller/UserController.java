@@ -21,11 +21,20 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/")
+    public ResponseEntity<?> home(){
+        System.out.println("in");
+        return ResponseEntity.ok("I am in");
+    }
+
     @PostMapping("/signUp")
     public ResponseEntity<?> signUp(@RequestBody SignUpRequest signUpRequest){
+        System.out.println(signUpRequest);
+        System.out.println(signUpRequest.getPassword() + ""+ signUpRequest.getMail());
         SignUpResponse response = new SignUpResponse();
         try {
             response.setMessage(userService.signUp(signUpRequest).getMessage());
+            System.out.println(response);
             return new ResponseEntity<>(new ApiResponse(true,response),
                     HttpStatus.CREATED);
         }catch (BookFinderException exception){
@@ -47,15 +56,16 @@ public class UserController {
                     HttpStatus.NOT_ACCEPTABLE);
         }
     }
-    @GetMapping("/searchBook")
+    @PostMapping ("/searchBook")
     public ResponseEntity<?> searchBook(@RequestBody BookFinderRequest bookFinderRequest){
-        BookFinderResponse response = new BookFinderResponse();
+        BookFinderResponse response;
         try {
+            response = userService.searchBook(bookFinderRequest);
             return new ResponseEntity<>(new ApiResponse(true,
-                    userService.searchBook(bookFinderRequest)),
+                    response),
                     HttpStatus.FOUND);
         }catch (BookFinderException exception){
-            return new ResponseEntity<>(new ApiResponse(false,response),
+            return new ResponseEntity<>(new ApiResponse(false,exception.getMessage()),
                     HttpStatus.NOT_FOUND);
         }
     }
