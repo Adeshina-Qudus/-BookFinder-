@@ -50,6 +50,7 @@ public class AppUserService implements UserService{
     @Override
     public SignInResponse signIn(SignInRequest signInRequest){
         SignInResponse signInResponse = new SignInResponse();
+        System.out.println(signInRequest.getMail());
         if (!userExist(signInRequest.getMail())) throw new UserDoesNotExistException(
                 "Account with this " + signInRequest.getMail() + " Does not exist"
         );
@@ -58,6 +59,7 @@ public class AppUserService implements UserService{
             throw new InvalidDetailsException("Invalid Details");
         }
         user.setLocked(false);
+        userRepository.save(user);
         signInResponse.setMessage("You have successfully signed in");
         return signInResponse;
     }

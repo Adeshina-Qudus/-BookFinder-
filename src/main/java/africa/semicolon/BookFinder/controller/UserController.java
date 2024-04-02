@@ -29,8 +29,6 @@ public class UserController {
 
     @PostMapping("/signUp")
     public ResponseEntity<?> signUp(@RequestBody SignUpRequest signUpRequest){
-        System.out.println(signUpRequest);
-        System.out.println(signUpRequest.getPassword() + ""+ signUpRequest.getMail());
         SignUpResponse response = new SignUpResponse();
         try {
             response.setMessage(userService.signUp(signUpRequest).getMessage());
@@ -46,6 +44,7 @@ public class UserController {
     @PostMapping("/signIn")
     public ResponseEntity<?> signIn(@RequestBody SignInRequest signInRequest){
         SignInResponse response = new SignInResponse();
+        System.out.println(signInRequest.getPassword());
         try {
             response.setMessage(userService.signIn(signInRequest).getMessage());
             return new ResponseEntity<>(new ApiResponse(true,response),
@@ -61,6 +60,7 @@ public class UserController {
         BookFinderResponse response;
         try {
             response = userService.searchBook(bookFinderRequest);
+            System.out.println(response);
             return new ResponseEntity<>(new ApiResponse(true,
                     response),
                     HttpStatus.FOUND);
