@@ -4,7 +4,7 @@ import africa.semicolon.BookFinder.dtos.request.BookFinderRequest;
 import africa.semicolon.BookFinder.dtos.request.SignInRequest;
 import africa.semicolon.BookFinder.dtos.request.SignUpRequest;
 import africa.semicolon.BookFinder.dtos.response.ApiResponse;
-import africa.semicolon.BookFinder.dtos.response.BookFinderResponse;
+import africa.semicolon.BookFinder.dtos.response.Book;
 import africa.semicolon.BookFinder.dtos.response.SignInResponse;
 import africa.semicolon.BookFinder.dtos.response.SignUpResponse;
 import africa.semicolon.BookFinder.exception.BookFinderException;
@@ -57,7 +57,7 @@ public class UserController {
     }
     @PostMapping ("/searchBook")
     public ResponseEntity<?> searchBook(@RequestBody BookFinderRequest bookFinderRequest){
-        BookFinderResponse response;
+        Book response;
         try {
             response = userService.searchBook(bookFinderRequest);
             System.out.println(response);

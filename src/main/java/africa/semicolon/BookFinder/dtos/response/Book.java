@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 @Getter
 @ToString
-public class BookFinderResponse {
+public class Book {
     private int count;
     private String next;
     private String previous;

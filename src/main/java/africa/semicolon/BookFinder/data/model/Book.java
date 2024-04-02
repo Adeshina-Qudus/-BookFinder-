@@ -14,7 +14,6 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Getter
 @ToString
 public class Book {
-
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;

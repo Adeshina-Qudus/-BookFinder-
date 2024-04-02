@@ -5,11 +5,10 @@ import africa.semicolon.BookFinder.data.model.Person;
 import africa.semicolon.BookFinder.dtos.request.BookFinderRequest;
 import africa.semicolon.BookFinder.dtos.request.SignInRequest;
 import africa.semicolon.BookFinder.dtos.request.SignUpRequest;
-import africa.semicolon.BookFinder.dtos.response.BookFinderResponse;
+import africa.semicolon.BookFinder.dtos.response.Book;
 import africa.semicolon.BookFinder.dtos.response.SignInResponse;
 import africa.semicolon.BookFinder.dtos.response.SignUpResponse;
 import africa.semicolon.BookFinder.exception.*;
-import africa.semicolon.BookFinder.data.model.Book;
 import africa.semicolon.BookFinder.data.model.User;
 import africa.semicolon.BookFinder.data.repositories.UserRepository;
 import africa.semicolon.BookFinder.utils.Mapper;
@@ -65,26 +64,27 @@ public class AppUserService implements UserService{
     }
 
     @Override
-    public BookFinderResponse searchBook(BookFinderRequest request) {
+    public Book searchBook(BookFinderRequest request) {
         RestTemplate restTemplate = new RestTemplate();
         String url = "https://gutendex.com/books/?search= " + request.getTitle();
-        BookFinderResponse response =
-                restTemplate.getForEntity(url, BookFinderResponse.class).getBody();
-        if (response == null){
+        Book bookResult =
+                restTemplate.getForEntity(url, Book.class).getBody();
+        if (bookResult == null){
             throw new BooKNotFoundException(request.getTitle()+" Not Found");}
-        BookTemp bookTemp = response.getResults().get(0);
+        BookTemp bookTemp = bookResult.getResults().get(0);
+        System.out.println(bookTemp);
         authors(bookTemp.getAuthors());
 //        Book book = new Book();
 //        modelMapper.map(book,BookTemp.class);
 //        saveBook(book);
-        Book book = Mapper.mapBook(bookTemp);
+        africa.semicolon.BookFinder.data.model.Book book = Mapper.mapBook(bookTemp);
         saveBook(book);
         addToBookToReadingList(book,request);
-        return response;
+        return bookResult;
     }
 
     @Override
-    public List<Book> viewReadingList(String mail) {
+    public List<africa.semicolon.BookFinder.data.model.Book> viewReadingList(String mail) {
         if (!userExist(mail)) throw new UserDoesNotExistException(
                 "Account with this {"+mail+"} Does not exist"
         );
@@ -92,7 +92,7 @@ public class AppUserService implements UserService{
         return user.getReadingList();
     }
 
-    private void addToBookToReadingList(Book book, BookFinderRequest bookFinderRequest) {
+    private void addToBookToReadingList(africa.semicolon.BookFinder.data.model.Book book, BookFinderRequest bookFinderRequest) {
         if (!userExist(bookFinderRequest.getMail())) throw new UserDoesNotExistException(
                 bookFinderRequest.getMail()+" doesn't exist");
         User user = userRepository.findByMail(bookFinderRequest.getMail());
@@ -102,7 +102,7 @@ public class AppUserService implements UserService{
     private void authors(List<Person> person) {
         personService.savePerson(person);
     }
-    private void saveBook(Book book) {
+    private void saveBook(africa.semicolon.BookFinder.data.model.Book book) {
         bookService.save(book);
     }
     private boolean userExist(String mail) {
