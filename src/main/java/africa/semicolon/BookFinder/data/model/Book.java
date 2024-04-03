@@ -19,9 +19,10 @@ public class Book {
     private Long id;
     private String title;
     @ElementCollection
-    private  List<String> subjects;
+    private List<String> subjects;
     @OneToMany
     private List<Person> authors;
     private boolean copyright;
     private String media_type;
+    private String image;
 }

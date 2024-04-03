@@ -5,12 +5,14 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Setter
 @Getter
 @ToString
-public class Book {
+public class BookFinderResponse {
     private int count;
     private String next;
     private String previous;
