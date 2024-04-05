@@ -34,6 +34,7 @@ public class AppUserService implements UserService{
     @Override
     public SignUpResponse signUp(SignUpRequest signUpRequest) {
         SignUpResponse response = new SignUpResponse();
+        checkingIfDetailsAreNotEmpty(signUpRequest);
         if (userExist(signUpRequest.getMail())) throw new UserAlreadyExistException(
                 "Account with " + signUpRequest.getMail()+  " already exist"
         );
@@ -47,6 +48,23 @@ public class AppUserService implements UserService{
         response.setMessage("Account for " + user.getMail() + " created");
         return response;
     }
+
+    private void checkingIfDetailsAreNotEmpty(SignUpRequest signUpRequest) {
+        if (signUpRequest.getMail().isEmpty()) throw new InputCannotBeEmptyException(
+                "Email Address is required"
+        );
+        if (signUpRequest.getName().isEmpty()) throw new InputCannotBeEmptyException(
+                "Name is required"
+        );
+        if (signUpRequest.getPassword().isEmpty()) throw new InputCannotBeEmptyException(
+                "Password is required"
+        );
+        if (signUpRequest.getConfirmPassword().isEmpty()) throw new InputCannotBeEmptyException(
+                "Confirm Password is required"
+        );
+
+    }
+
     @Override
     public SignInResponse signIn(SignInRequest signInRequest){
         SignInResponse signInResponse = new SignInResponse();
