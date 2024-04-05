@@ -22,12 +22,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/")
-    public ResponseEntity<?> home(){
-        System.out.println("in");
-        return ResponseEntity.ok("I am in");
-    }
-
     @PostMapping("/signUp")
     public ResponseEntity<?> signUp(@RequestBody SignUpRequest signUpRequest){
         SignUpResponse response = new SignUpResponse();
