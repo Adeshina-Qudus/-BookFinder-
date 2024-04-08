@@ -76,7 +76,7 @@ public class AppUserService implements UserService{
         if (!user.getPassword().equals(signInRequest.getPassword())){
             throw new InvalidDetailsException("Invalid Details");
         }
-        user.setLocked(false);
+        user.setLocked(true);
         userRepository.save(user);
         signInResponse.setMessage("You have successfully signed in");
         return signInResponse;
